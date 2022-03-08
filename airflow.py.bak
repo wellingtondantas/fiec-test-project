@@ -59,17 +59,17 @@ with DAG(
         ti.xcom_push('order_data', data_string)
     
     
-    alert1 = BashOperator(
+    t01 = BashOperator(
         task_id= 'alert1',
         bash_command='"echo download finished"'
     )
 
-    alert2 = BashOperator(
+    t02 = BashOperator(
         task_id= 'alert2',
         bash_command='"echo tb_atracacao_fato finished"'
     )
 
-    alert3 = BashOperator(
+    t03 = BashOperator(
         task_id= 'alert3',
         bash_command='"echo tb_carga_fato finished"'
     )
@@ -83,4 +83,4 @@ with DAG(
     
     
     
-    download >> alert1 >> tb_atracacao_fato >> alert2 >> tb_carga_fato >> alert3
+    download >> t01 >> tb_atracacao_fato >> t02 >> tb_carga_fato >> t03
